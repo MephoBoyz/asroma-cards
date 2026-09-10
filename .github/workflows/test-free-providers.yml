@@ -1,0 +1,221 @@
+name: Test Free Football Providers
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  football-data:
+    name: Test football-data.org
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test Serie A and AS Roma
+        env:
+          FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os
+          import sys
+          import requests
+
+          token = os.environ.get("FOOTBALL_DATA_TOKEN")
+          if not token:
+              print("ERROR: FOOTBALL_DATA_TOKEN is not available.")
+              sys.exit(1)
+
+          headers = {"X-Auth-Token": token}
+          base_url = "https://api.football-data.org/v4"
+
+          checks = [
+              (
+                  "Serie A competition",
+                  f"{base_url}/competitions/SA",
+                  {}
+              ),
+              (
+                  "AS Roma team",
+                  f"{base_url}/teams/100",
+                  {}
+              ),
+              (
+                  "AS Roma scheduled matches",
+                  f"{base_url}/teams/100/matches",
+                  {"status": "SCHEDULED", "limit": 5}
+              ),
+              (
+                  "Serie A standings",
+                  f"{base_url}/competitions/SA/standings",
+                  {}
+              )
+          ]
+
+          for label, url, params in checks:
+              response = requests.get(
+                  url,
+                  headers=headers,
+                  params=params,
+                  timeout=30
+              )
+
+              print(f"\n{label}")
+              print(f"HTTP status: {response.status_code}")
+
+              if response.status_code == 200:
+                  payload = response.json()
+
+                  if label == "Serie A competition":
+                      print(
+                          f"Competition: {payload.get('name')} "
+                          f"({payload.get('code')})"
+                      )
+
+                  elif label == "AS Roma team":
+                      print(f"Team: {payload.get('name')}")
+                      print(f"Team ID: {payload.get('id')}")
+                      print(f"Squad members returned: {len(payload.get('squad', []))}")
+
+                  elif label == "AS Roma scheduled matches":
+                      matches = payload.get("matches", [])
+                      print(f"Scheduled matches returned: {len(matches)}")
+                      for match in matches[:3]:
+                          print(
+                              f"- {match.get('utcDate')}: "
+                              f"{match.get('homeTeam', {}).get('name')} vs "
+                              f"{match.get('awayTeam', {}).get('name')}"
+                          )
+
+                  elif label == "Serie A standings":
+                      standings = payload.get("standings", [])
+                      table = standings[0].get("table", []) if standings else []
+                      roma = next(
+                          (
+                              item for item in table
+                              if item.get("team", {}).get("name", "").lower()
+                              in {"as roma", "roma"}
+                          ),
+                          None
+                      )
+                      print(f"Table rows returned: {len(table)}")
+                      if roma:
+                          print(
+                              f"Roma: position {roma.get('position')}, "
+                              f"points {roma.get('points')}"
+                          )
+                      else:
+                          print("Roma was not found in the returned table.")
+
+              else:
+                  print("Response preview:")
+                  print(response.text[:500])
+          PY
+
+  thesportsdb:
+    name: Test TheSportsDB
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Search AS Roma and inspect artwork
+        env:
+          THESPORTSDB_API_KEY: ${{ secrets.THESPORTSDB_API_KEY }}
+        run: |
+          python - <<'PY'
+          import os
+          import sys
+          import requests
+
+          api_key = os.environ.get("THESPORTSDB_API_KEY")
+          if not api_key:
+              print("ERROR: THESPORTSDB_API_KEY is not available.")
+              sys.exit(1)
+
+          url = (
+              "https://www.thesportsdb.com/api/v1/json/"
+              f"{api_key}/searchteams.php"
+          )
+
+          response = requests.get(
+              url,
+              params={"t": "AS Roma"},
+              timeout=30
+          )
+
+          print("TheSportsDB AS Roma search")
+          print(f"HTTP status: {response.status_code}")
+
+          if response.status_code != 200:
+              print("Response preview:")
+              print(response.text[:500])
+              sys.exit(1)
+
+          payload = response.json()
+          teams = payload.get("teams") or []
+
+          print(f"Teams returned: {len(teams)}")
+
+          if not teams:
+              print("No team result found for AS Roma.")
+              sys.exit(0)
+
+          team = teams[0]
+
+          print(f"Team: {team.get('strTeam')}")
+          print(f"TheSportsDB team ID: {team.get('idTeam')}")
+          print(f"League: {team.get('strLeague')}")
+          print(f"Badge available: {bool(team.get('strBadge'))}")
+          print(f"Logo available: {bool(team.get('strLogo'))}")
+          print(f"Jersey available: {bool(team.get('strEquipment'))}")
+          print(f"Fanart available: {bool(team.get('strFanart1'))}")
+          PY
+
+  bigballsdata:
+    name: Test BigBallsData
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test authenticated API access
+        env:
+          BIGBALLSDATA_TOKEN: ${{ secrets.BIGBALLSDATA_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os
+          import sys
+          import requests
+
+          token = os.environ.get("BIGBALLSDATA_TOKEN")
+          if not token:
+              print("ERROR: BIGBALLSDATA_TOKEN is not available.")
+              sys.exit(1)
+
+          response = requests.get(
+              "https://api.bigballsdata.com/v1/sports",
+              headers={
+                  "Authorization": f"Bearer {token}",
+                  "Accept": "application/json"
+              },
+              timeout=30
+          )
+
+          print("BigBallsData authentication test")
+          print(f"HTTP status: {response.status_code}")
+
+          if response.status_code != 200:
+              print("Response preview:")
+              print(response.text[:500])
+              sys.exit(1)
+
+          payload = response.json()
+          data = payload.get("data", payload)
+
+          if isinstance(data, list):
+              print(f"Sports records returned: {len(data)}")
+              for sport in data[:10]:
+                  if isinstance(sport, dict):
+                      print(
+                          f"- {sport.get('name') or sport.get('sport_name') or sport.get('id')}"
+                      )
+          else:
+              print("Authenticated response received successfully.")
+          PY
