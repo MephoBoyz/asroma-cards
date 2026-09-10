@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100c0e">
+  <meta name="description" content="AS Roma results, fixtures, standings and squad cards.">
+
+  <title>AS Roma Cards</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="./" aria-label="AS Roma Cards home">
+        <div class="brand-mark">ROMA</div>
+        <div>
+          <p class="eyebrow">FOOTBALL DATA CARDS</p>
+          <h1>AS Roma Cards</h1>
+        </div>
+      </a>
+
+      <div class="header-actions">
+        <span class="status-chip">
+          <span class="status-dot"></span>
+          <span data-i18n="liveData">Data dashboard</span>
+        </span>
+
+        <div class="language-switch" aria-label="Language">
+          <button class="language-button is-active" type="button" data-language="en">EN</button>
+          <button class="language-button" type="button" data-language="bg">BG</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero-section">
+      <div class="hero-copy">
+        <p class="eyebrow" data-i18n="channelLabel">CHANNEL</p>
+        <h2 data-i18n="heroTitle">AS Roma, match by match.</h2>
+        <p class="hero-description" data-i18n="heroDescription">
+          Results, fixtures, standings and squad information in one place.
+        </p>
+      </div>
+
+      <div class="hero-meta">
+        <span class="watermark">IN CONSTRUCTION</span>
+        <span id="updated-at" class="updated-at">—</span>
+      </div>
+    </section>
+
+    <div id="error-message" class="error-message is-hidden" role="alert"></div>
+
+    <section class="match-grid" aria-label="Match overview">
+      <article class="panel match-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow" data-i18n="lastMatch">LAST MATCH</p>
+            <h3 id="last-match-competition">—</h3>
+          </div>
+          <span id="last-match-status" class="match-status">—</span>
+        </div>
+
+        <div id="last-match" class="match-content">
+          <div class="loading-block"></div>
+        </div>
+      </article>
+
+      <article class="panel match-panel next-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow" data-i18n="nextMatch">NEXT MATCH</p>
+            <h3 id="next-match-competition">—</h3>
+          </div>
+          <span id="next-match-status" class="match-status match-status-next">—</span>
+        </div>
+
+        <div id="next-match" class="match-content">
+          <div class="loading-block"></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="panel standings-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow" data-i18n="tournamentState">TOURNAMENT STATE</p>
+            <h3 data-i18n="serieA">Serie A</h3>
+          </div>
+          <span class="competition-code">SA</span>
+        </div>
+
+        <div id="standing-summary" class="standing-summary">
+          <div class="loading-block"></div>
+        </div>
+      </article>
+
+      <article class="panel club-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow" data-i18n="clubProfile">CLUB PROFILE</p>
+            <h3>AS Roma</h3>
+          </div>
+          <span class="competition-code">ROM</span>
+        </div>
+
+        <div id="club-profile" class="club-profile">
+          <div class="loading-block"></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel fixtures-panel">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow" data-i18n="fixtures">FIXTURES</p>
+          <h3 data-i18n="recentAndUpcoming">Recent and upcoming</h3>
+        </div>
+        <span id="fixture-count" class="muted-label">—</span>
+      </div>
+
+      <div class="fixture-columns">
+        <div>
+          <h4 class="subheading" data-i18n="recentResults">Recent results</h4>
+          <div id="recent-fixtures" class="fixture-list"></div>
+        </div>
+
+        <div>
+          <h4 class="subheading" data-i18n="upcomingFixtures">Upcoming fixtures</h4>
+          <div id="upcoming-fixtures" class="fixture-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel squad-panel">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow" data-i18n="squad">SQUAD</p>
+          <h3 data-i18n="firstTeam">First team</h3>
+        </div>
+        <span id="squad-count" class="muted-label">—</span>
+      </div>
+
+      <div id="squad-list" class="squad-grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <span>AS ROMA CARDS</span>
+      <span data-i18n="dataCredit">Data from football-data.org and TheSportsDB</span>
+      <span>IN CONSTRUCTION</span>
+    </div>
+  </footer>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
