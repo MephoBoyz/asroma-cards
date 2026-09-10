@@ -1,0 +1,51 @@
+{
+  "team": {
+    "id": 37,
+    "name_en": "AS Roma",
+    "name_bg": "АС Рома",
+    "short_code": "ROM"
+  },
+  "competitions": [
+    {
+      "id": 384,
+      "name_en": "Serie A",
+      "name_bg": "Серия А",
+      "type": "league"
+    },
+    {
+      "id": 732,
+      "name_en": "Coppa Italia",
+      "name_bg": "Купа на Италия",
+      "type": "cup"
+    },
+    {
+      "id": 2,
+      "name_en": "UEFA Champions League",
+      "name_bg": "Шампионска лига",
+      "type": "cup"
+    },
+    {
+      "id": 5,
+      "name_en": "UEFA Europa League",
+      "name_bg": "Лига Европа",
+      "type": "cup"
+    },
+    {
+      "id": 848,
+      "name_en": "UEFA Conference League",
+      "name_bg": "Лига на конференциите",
+      "type": "cup"
+    }
+  ],
+  "cards": {
+    "width": 1080,
+    "height": 1350,
+    "font_family": "Oswald",
+    "theme": "dark_roma",
+    "watermark_text": "AS ROMA CARDS – IN CONSTRUCTION"
+  },
+  "schedule": {
+    "matchday_only": true,
+    "cron_expression": "0 9 * * *"
+  }
+}
