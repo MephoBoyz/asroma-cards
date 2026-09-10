@@ -99,6 +99,7 @@ function cacheElements() {
 
   elements.squadList = document.getElementById("squad-list");
   elements.squadCount = document.getElementById("squad-count");
+  elements.squadSection = document.getElementById("squad-section");
 }
 
 function bindEvents() {
@@ -163,7 +164,16 @@ function renderAll(data) {
   renderStanding(data.standings?.serie_a?.roma);
   renderClubProfile(data);
   renderFixtures(data);
-  renderSquad(data.squad);
+
+  const showSquad = data.meta?.show_squad ?? false;
+
+  if (elements.squadSection) {
+    elements.squadSection.classList.toggle("is-hidden", !showSquad);
+  }
+
+  if (showSquad) {
+    renderSquad(data.squad);
+  }
 }
 
 function renderUpdatedAt(data) {
