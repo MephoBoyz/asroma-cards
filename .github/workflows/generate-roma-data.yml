@@ -1,0 +1,83 @@
+name: Generate AS Roma Data Preview
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  generate:
+    name: Fetch and validate Roma data
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Generate Roma JSON data
+        env:
+          FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
+          THESPORTSDB_API_KEY: ${{ secrets.THESPORTSDB_API_KEY }}
+        run: |
+          python src/updater/fetch_roma_data.py
+
+      - name: Show safe summary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("public/data/roma.json")
+          data = json.loads(path.read_text(encoding="utf-8"))
+
+          team = data.get("team", {}).get("football_data", {})
+          last_match = data.get("last_match") or {}
+          next_match = data.get("next_match") or {}
+          standing = (
+              data.get("standings", {})
+              .get("serie_a", {})
+              .get("roma")
+              or {}
+          )
+
+          print(f"Team: {team.get('name')}")
+          print(f"Squad members: {len(data.get('squad', []))}")
+          print(
+              "Artwork available: "
+              f"{data.get('team', {}).get('artwork', {}).get('available')}"
+          )
+          print(
+              "Last match: "
+              f"{last_match.get('home_team', {}).get('name')} vs "
+              f"{last_match.get('away_team', {}).get('name')}"
+          )
+          print(
+              "Next match: "
+              f"{next_match.get('home_team', {}).get('name')} vs "
+              f"{next_match.get('away_team', {}).get('name')}"
+          )
+          print(
+              "Serie A: "
+              f"position {standing.get('position')}, "
+              f"points {standing.get('points')}"
+          )
+          PY
+
+      - name: Upload Roma JSON preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: roma-data-preview
+          path: public/data/roma.json
+          if-no-files-found: error
+          retention-days: 7
