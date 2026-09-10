@@ -1,0 +1,84 @@
+name: Test BigBallsData Roma Statistics
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-statistics:
+    name: Test finished Roma match statistics
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Find a finished Roma match and test statistics
+        env:
+          BIGBALLSDATA_TOKEN: ${{ secrets.BIGBALLSDATA_TOKEN }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import sys
+          import requests
+
+          token = (os.environ.get("BIGBALLSDATA_TOKEN") or "").strip()
+
+          if not token:
+              print("ERROR: BIGBALLSDATA_TOKEN is missing.")
+              sys.exit(1)
+
+          base_url = "https://api.bigballsdata.com/v1"
+          headers = {
+              "X-Api-Key": token,
+              "Accept": "application/json"
+          }
+
+          response = requests.get(
+              f"{base_url}/matches",
+              headers=headers,
+              params={
+                  "sport": "football",
+                  "league": "serie_a",
+                  "limit": 100
+              },
+              timeout=30
+          )
+
+          print(f"Match-list HTTP status: {response.status_code}")
+
+          if response.status_code != 200:
+              print(response.text[:1000])
+              sys.exit(1)
+
+          payload = response.json()
+          matches = payload.get("data", [])
+
+          finished = [
+              match for match in matches
+              if "roma" in json.dumps(match).lower()
+              and str(match.get("status", "")).lower()
+              in {"finished", "final", "completed", "ft"}
+          ]
+
+          print(f"Finished Roma matches found: {len(finished)}")
+
+          if not finished:
+              print("No completed Roma match available for statistics test.")
+              sys.exit(0)
+
+          match = finished[0]
+          match_id = match.get("id")
+
+          print(f"Selected match ID: {match_id}")
+          print(json.dumps(match, ensure_ascii=False, indent=2))
+
+          detail_response = requests.get(
+              f"{base_url}/matches/{match_id}/statistics",
+              headers=headers,
+              timeout=30
+          )
+
+          print(f"\nStatistics HTTP status: {detail_response.status_code}")
+          print(detail_response.text[:3000])
+          PY
