@@ -1,13 +1,14 @@
 {
   "meta": {
     "project": "AS Roma Cards",
-    "generated_at_utc": "2026-09-10T12:03:52.963536Z",
+    "generated_at_utc": "2026-09-10T12:18:53.271413Z",
     "timezone": "Europe/Rome",
     "default_language": "en",
     "supported_languages": [
       "en",
       "bg"
     ],
+    "show_squad": false,
     "source_status": {
       "football_data": "ok",
       "the_sports_db_artwork": "ok",
