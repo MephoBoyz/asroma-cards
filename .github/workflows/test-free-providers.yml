@@ -124,6 +124,7 @@ jobs:
           python - <<'PY'
           import os
           import sys
+          from urllib.parse import quote
           import requests
 
           api_key = os.environ.get("THESPORTSDB_API_KEY")
@@ -131,14 +132,18 @@ jobs:
               print("ERROR: THESPORTSDB_API_KEY is not available.")
               sys.exit(1)
 
+          team_name = "AS Roma"
           url = (
-              "https://www.thesportsdb.com/api/v1/json/"
-              f"{api_key}/searchteams.php"
+              "https://www.thesportsdb.com/api/v2/json/"
+              f"search/team/{quote(team_name)}"
           )
 
           response = requests.get(
               url,
-              params={"t": "AS Roma"},
+              headers={
+                  "X-API-KEY": api_key,
+                  "Accept": "application/json"
+              },
               timeout=30
           )
 
@@ -159,7 +164,13 @@ jobs:
               print("No team result found for AS Roma.")
               sys.exit(0)
 
-          team = teams[0]
+          team = next(
+              (
+                  item for item in teams
+                  if (item.get("strTeam") or "").lower() in {"as roma", "roma"}
+              ),
+              teams[0]
+          )
 
           print(f"Team: {team.get('strTeam')}")
           print(f"TheSportsDB team ID: {team.get('idTeam')}")
