@@ -1,0 +1,72 @@
+# -------------------------------------------------
+# Secrets — never commit API keys or local settings
+# -------------------------------------------------
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+secrets.json
+credentials.json
+config/local.json
+
+# -------------------------------------------------
+# Python generated files
+# -------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Python virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python tooling, tests and coverage
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Python package/build files
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# -------------------------------------------------
+# Node / card-rendering generated files
+# -------------------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+playwright-report/
+test-results/
+
+# -------------------------------------------------
+# Temporary card-rendering output
+# Keep final approved cards in public/cards/
+# -------------------------------------------------
+tmp/
+temp/
+.cache/
+.generated/
+cards_preview/
+public/cards/.tmp/
+
+# -------------------------------------------------
+# Editor and operating-system files
+# -------------------------------------------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
