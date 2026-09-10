@@ -127,8 +127,8 @@ jobs:
           from urllib.parse import quote
           import requests
 
-          api_key = os.environ.get("THESPORTSDB_API_KEY")
-          if not api_key:
+          api_key = (os.environ.get("THESPORTSDB_API_KEY") or "").strip()
+            if not api_key:
               print("ERROR: THESPORTSDB_API_KEY is not available.")
               sys.exit(1)
 
