@@ -4,7 +4,8 @@
     "channel_name": "IN CONSTRUCTION",
     "default_language": "en",
     "supported_languages": ["en", "bg"],
-    "timezone": "Europe/Rome"
+    "timezone": "Europe/Rome",
+    "show_squad": false
   },
   "team": {
     "canonical_name": "AS Roma",
@@ -13,7 +14,8 @@
     "football_data_team_id": 100,
     "the_sports_db_search": "AS Roma",
     "bigballsdata_team_search": "AS Roma"
-  },
+  }
+},
   "competitions": {
     "serie_a": {
       "football_data_code": "SA",
