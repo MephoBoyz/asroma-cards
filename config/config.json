@@ -1,51 +1,87 @@
 {
-  "team": {
-    "id": 37,
-    "name_en": "AS Roma",
-    "name_bg": "АС Рома",
-    "short_code": "ROM"
+  "project": {
+    "name": "AS Roma Cards",
+    "channel_name": "IN CONSTRUCTION",
+    "default_language": "en",
+    "supported_languages": ["en", "bg"],
+    "timezone": "Europe/Rome"
   },
-  "competitions": [
-    {
-      "id": 384,
+  "team": {
+    "canonical_name": "AS Roma",
+    "display_name_en": "AS Roma",
+    "display_name_bg": "АС Рома",
+    "football_data_team_id": 100,
+    "the_sports_db_search": "AS Roma",
+    "bigballsdata_team_search": "AS Roma"
+  },
+  "competitions": {
+    "serie_a": {
+      "football_data_code": "SA",
       "name_en": "Serie A",
       "name_bg": "Серия А",
-      "type": "league"
+      "enabled": true,
+      "standings": true
     },
-    {
-      "id": 732,
-      "name_en": "Coppa Italia",
-      "name_bg": "Купа на Италия",
-      "type": "cup"
-    },
-    {
-      "id": 2,
+    "champions_league": {
+      "football_data_code": "CL",
       "name_en": "UEFA Champions League",
       "name_bg": "Шампионска лига",
-      "type": "cup"
+      "enabled": true,
+      "standings": false
     },
-    {
-      "id": 5,
+    "europa_league": {
+      "football_data_code": "EL",
       "name_en": "UEFA Europa League",
       "name_bg": "Лига Европа",
-      "type": "cup"
+      "enabled": true,
+      "standings": false
     },
-    {
-      "id": 848,
+    "conference_league": {
+      "football_data_code": "ECL",
       "name_en": "UEFA Conference League",
       "name_bg": "Лига на конференциите",
-      "type": "cup"
+      "enabled": true,
+      "standings": false
+    },
+    "coppa_italia": {
+      "name_en": "Coppa Italia",
+      "name_bg": "Купа на Италия",
+      "enabled": true,
+      "standings": false
     }
-  ],
-  "cards": {
+  },
+  "providers": {
+    "football_data": {
+      "base_url": "https://api.football-data.org/v4",
+      "enabled": true,
+      "role": "primary_fixtures_standings_squad"
+    },
+    "the_sports_db": {
+      "base_url": "https://www.thesportsdb.com/api/v1/json",
+      "enabled": true,
+      "role": "artwork_and_player_images"
+    },
+    "bigballsdata": {
+      "base_url": "https://api.bigballsdata.com/v1",
+      "enabled": true,
+      "role": "serie_a_events_lineups_and_advanced_stats"
+    }
+  },
+  "card_design": {
     "width": 1080,
     "height": 1350,
+    "format": "png",
+    "theme": "dark_roma_red_gold",
     "font_family": "Oswald",
-    "theme": "dark_roma",
-    "watermark_text": "AS ROMA CARDS – IN CONSTRUCTION"
+    "watermark": "IN CONSTRUCTION",
+    "team_logo": true,
+    "competition_logo": true
   },
-  "schedule": {
+  "update_policy": {
     "matchday_only": true,
-    "cron_expression": "0 9 * * *"
+    "pre_match_window_hours": 48,
+    "post_match_window_hours": 48,
+    "scheduled_check_utc": "09:00",
+    "publish_method": "pull_request_approval"
   }
 }
