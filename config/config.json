@@ -13,16 +13,19 @@
     "display_name_bg": "АС Рома",
     "football_data_team_id": 100,
     "the_sports_db_search": "AS Roma",
-    "bigballsdata_team_search": "AS Roma"
-  },
+    "bigballsdata_team_search": "AS Roma",
+    "bigballsdata_team_id": "22033fe3-0a71-435a-9762-749984ea439c"  },
+  
   "competitions": {
     "serie_a": {
-      "football_data_code": "SA",
-      "name_en": "Serie A",
-      "name_bg": "Серия А",
-      "enabled": true,
-      "standings": true
-    },
+  "football_data_code": "SA",
+  "bigballsdata_league_id": "f0cd3a03-43b8-4076-8835-dca624e98420",
+  "bigballsdata_league_name": "Serie A",
+  "name_en": "Serie A",
+  "name_bg": "Серия А",
+  "enabled": true,
+  "standings": true
+},
     "champions_league": {
       "football_data_code": "CL",
       "name_en": "UEFA Champions League",
