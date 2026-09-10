@@ -344,6 +344,7 @@ def main():
             "timezone": config["project"]["timezone"],
             "default_language": config["project"]["default_language"],
             "supported_languages": config["project"]["supported_languages"],
+            "show_squad": config["project"].get("show_squad", False),
             "source_status": {
                 "football_data": "ok",
                 "the_sports_db_artwork": (
