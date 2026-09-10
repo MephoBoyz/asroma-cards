@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Find a finished Roma match and test statistics
+      - name: Find stored Roma match and test statistics
         env:
           BIGBALLSDATA_TOKEN: ${{ secrets.BIGBALLSDATA_TOKEN }}
         run: |
@@ -35,7 +35,7 @@ jobs:
           }
 
           response = requests.get(
-              f"{base_url}/matches",
+              f"{base_url}/stored/matches",
               headers=headers,
               params={
                   "sport": "football",
@@ -45,40 +45,76 @@ jobs:
               timeout=30
           )
 
-          print(f"Match-list HTTP status: {response.status_code}")
+          print(f"Stored-match list HTTP status: {response.status_code}")
 
           if response.status_code != 200:
-              print(response.text[:1000])
+              print(response.text[:1200])
               sys.exit(1)
 
           payload = response.json()
           matches = payload.get("data", [])
 
-          finished = [
+          print(f"Stored matches returned: {len(matches)}")
+
+          roma_matches = [
               match for match in matches
               if "roma" in json.dumps(match).lower()
-              and str(match.get("status", "")).lower()
-              in {"finished", "final", "completed", "ft"}
           ]
 
-          print(f"Finished Roma matches found: {len(finished)}")
+          print(f"Stored Roma matches found: {len(roma_matches)}")
 
-          if not finished:
-              print("No completed Roma match available for statistics test.")
+          if not roma_matches:
+              print("No stored Roma match found in this response.")
+              print("First stored match preview:")
+              print(json.dumps(matches[:1], ensure_ascii=False, indent=2))
               sys.exit(0)
 
-          match = finished[0]
-          match_id = match.get("id")
+          match = next(
+              (
+                  item for item in roma_matches
+                  if "atalanta" in json.dumps(item).lower()
+              ),
+              roma_matches[0]
+          )
 
-          print(f"Selected match ID: {match_id}")
+          match_id = (
+              match.get("id")
+              or match.get("match_id")
+              or match.get("game_id")
+          )
+
+          print(f"Selected stored match ID: {match_id}")
+          print("Selected match:")
           print(json.dumps(match, ensure_ascii=False, indent=2))
 
-          detail_response = requests.get(
-              f"{base_url}/matches/{match_id}/statistics",
+          if not match_id:
+              print("No usable stored match ID was returned.")
+              sys.exit(0)
+
+          detail = requests.get(
+              f"{base_url}/stored/matches/{match_id}",
               headers=headers,
               timeout=30
           )
 
-          print(f"\nStatistics HTTP status: {detail_response.status_code}")
-          print(detail_response.text[:3000])
+          print(f"\nStored match detail HTTP status: {detail.status_code}")
+          print(detail.text[:3000])
+
+          stats = requests.get(
+              f"{base_url}/stored/matches/{match_id}/stats",
+              headers=headers,
+              timeout=30
+          )
+
+          print(f"\nStored match stats HTTP status: {stats.status_code}")
+          print(stats.text[:5000])
+
+          lineups = requests.get(
+              f"{base_url}/stored/matches/{match_id}/lineups",
+              headers=headers,
+              timeout=30
+          )
+
+          print(f"\nStored match lineups HTTP status: {lineups.status_code}")
+          print(lineups.text[:5000])
           PY
