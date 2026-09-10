@@ -21,7 +21,8 @@ jobs:
           import sys
           import requests
 
-          token = os.environ.get("FOOTBALL_DATA_TOKEN")
+          token = (os.environ.get("FOOTBALL_DATA_TOKEN") or "").strip()
+
           if not token:
               print("ERROR: FOOTBALL_DATA_TOKEN is not available.")
               sys.exit(1)
@@ -75,21 +76,24 @@ jobs:
                   elif label == "AS Roma team":
                       print(f"Team: {payload.get('name')}")
                       print(f"Team ID: {payload.get('id')}")
-                      print(f"Squad members returned: {len(payload.get('squad', []))}")
+                      print(
+                          "Squad members returned: "
+                          f"{len(payload.get('squad', []))}"
+                      )
 
                   elif label == "AS Roma scheduled matches":
                       matches = payload.get("matches", [])
                       print(f"Scheduled matches returned: {len(matches)}")
+
                       for match in matches[:3]:
-                          print(
-                              f"- {match.get('utcDate')}: "
-                              f"{match.get('homeTeam', {}).get('name')} vs "
-                              f"{match.get('awayTeam', {}).get('name')}"
-                          )
+                          home = match.get("homeTeam", {}).get("name", "Home")
+                          away = match.get("awayTeam", {}).get("name", "Away")
+                          print(f"- {match.get('utcDate')}: {home} vs {away}")
 
                   elif label == "Serie A standings":
                       standings = payload.get("standings", [])
                       table = standings[0].get("table", []) if standings else []
+
                       roma = next(
                           (
                               item for item in table
@@ -98,7 +102,9 @@ jobs:
                           ),
                           None
                       )
+
                       print(f"Table rows returned: {len(table)}")
+
                       if roma:
                           print(
                               f"Roma: position {roma.get('position')}, "
@@ -112,7 +118,7 @@ jobs:
                   print(response.text[:500])
           PY
 
-    thesportsdb:
+  thesportsdb:
     name: Test TheSportsDB
     runs-on: ubuntu-latest
 
@@ -193,7 +199,8 @@ jobs:
           import sys
           import requests
 
-          token = os.environ.get("BIGBALLSDATA_TOKEN")
+          token = (os.environ.get("BIGBALLSDATA_TOKEN") or "").strip()
+
           if not token:
               print("ERROR: BIGBALLSDATA_TOKEN is not available.")
               sys.exit(1)
@@ -220,11 +227,15 @@ jobs:
 
           if isinstance(data, list):
               print(f"Sports records returned: {len(data)}")
+
               for sport in data[:10]:
                   if isinstance(sport, dict):
-                      print(
-                          f"- {sport.get('name') or sport.get('sport_name') or sport.get('id')}"
+                      name = (
+                          sport.get("name")
+                          or sport.get("sport_name")
+                          or sport.get("id")
                       )
+                      print(f"- {name}")
           else:
               print("Authenticated response received successfully.")
           PY
