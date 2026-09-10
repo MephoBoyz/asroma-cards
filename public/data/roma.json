@@ -1,0 +1,844 @@
+{
+  "meta": {
+    "project": "AS Roma Cards",
+    "generated_at_utc": "2026-09-10T12:03:52.963536Z",
+    "timezone": "Europe/Rome",
+    "default_language": "en",
+    "supported_languages": [
+      "en",
+      "bg"
+    ],
+    "source_status": {
+      "football_data": "ok",
+      "the_sports_db_artwork": "ok",
+      "bigballsdata": "not_yet_integrated"
+    }
+  },
+  "team": {
+    "display_name_en": "AS Roma",
+    "display_name_bg": "АС Рома",
+    "football_data": {
+      "id": 100,
+      "name": "AS Roma",
+      "short_name": "Roma",
+      "tla": "ROM",
+      "crest": "https://crests.football-data.org/100.png",
+      "website": "http://www.asroma.it",
+      "founded": 1927,
+      "venue": "Stadio Olimpico",
+      "club_colors": "Maroon / Orange / White",
+      "area": {
+        "id": 2114,
+        "name": "Italy",
+        "code": "ITA"
+      }
+    },
+    "artwork": {
+      "provider": "TheSportsDB",
+      "available": true,
+      "team_id": "133682",
+      "name": "Roma",
+      "league": "Italian Serie A",
+      "badge": "https://r2.thesportsdb.com/images/media/team/badge/jwro2s1760820674.png",
+      "logo": "https://r2.thesportsdb.com/images/media/team/logo/rutrwu1424420579.png",
+      "jersey": "https://r2.thesportsdb.com/images/media/team/equipment/ww2dqw1752336962.png",
+      "fanart_1": "https://r2.thesportsdb.com/images/media/team/fanart/wptpuu1420507611.jpg",
+      "fanart_2": "https://r2.thesportsdb.com/images/media/team/fanart/usutts1420507624.jpg",
+      "fanart_3": "https://r2.thesportsdb.com/images/media/team/fanart/usxxtx1421077390.jpg",
+      "fanart_4": "https://r2.thesportsdb.com/images/media/team/fanart/rtwvpq1421077414.jpg",
+      "stadium": "Stadio Olimpico",
+      "stadium_thumb": null
+    }
+  },
+  "last_match": {
+    "id": 558611,
+    "utc_date": "2026-09-05T18:45:00Z",
+    "status": "FINISHED",
+    "matchday": 3,
+    "stage": "REGULAR_SEASON",
+    "group": null,
+    "last_updated": "2026-09-10T10:20:32Z",
+    "competition": {
+      "id": 2019,
+      "name": "Serie A",
+      "code": "SA",
+      "type": "LEAGUE",
+      "emblem": "https://crests.football-data.org/c111.png"
+    },
+    "home_team": {
+      "id": 100,
+      "name": "AS Roma",
+      "short_name": "Roma",
+      "tla": "ROM",
+      "crest": "https://crests.football-data.org/100.png"
+    },
+    "away_team": {
+      "id": 102,
+      "name": "Atalanta BC",
+      "short_name": "Atalanta",
+      "tla": "ATA",
+      "crest": "https://crests.football-data.org/102.png"
+    },
+    "score": {
+      "winner": "HOME_TEAM",
+      "duration": "REGULAR",
+      "full_time": {
+        "home": 2,
+        "away": 1
+      },
+      "half_time": {
+        "home": 0,
+        "away": 0
+      },
+      "extra_time": {
+        "home": null,
+        "away": null
+      },
+      "penalties": {
+        "home": null,
+        "away": null
+      }
+    }
+  },
+  "next_match": {
+    "id": 575335,
+    "utc_date": "2026-09-10T16:45:00Z",
+    "status": "TIMED",
+    "matchday": 1,
+    "stage": "LEAGUE_STAGE",
+    "group": null,
+    "last_updated": "2026-09-10T10:20:31Z",
+    "competition": {
+      "id": 2001,
+      "name": "UEFA Champions League",
+      "code": "CL",
+      "type": "CUP",
+      "emblem": "https://crests.football-data.org/CL.png"
+    },
+    "home_team": {
+      "id": 613,
+      "name": "Fenerbahçe SK",
+      "short_name": "Fenerbahçe",
+      "tla": "FEN",
+      "crest": "https://crests.football-data.org/613.png"
+    },
+    "away_team": {
+      "id": 100,
+      "name": "AS Roma",
+      "short_name": "Roma",
+      "tla": "ROM",
+      "crest": "https://crests.football-data.org/100.png"
+    },
+    "score": {
+      "winner": null,
+      "duration": "REGULAR",
+      "full_time": {
+        "home": null,
+        "away": null
+      },
+      "half_time": {
+        "home": null,
+        "away": null
+      },
+      "extra_time": {
+        "home": null,
+        "away": null
+      },
+      "penalties": {
+        "home": null,
+        "away": null
+      }
+    }
+  },
+  "recent_matches": [
+    {
+      "id": 558638,
+      "utc_date": "2026-08-24T18:45:00Z",
+      "status": "FINISHED",
+      "matchday": 1,
+      "stage": "REGULAR_SEASON",
+      "group": null,
+      "last_updated": "2026-09-10T10:20:32Z",
+      "competition": {
+        "id": 2019,
+        "name": "Serie A",
+        "code": "SA",
+        "type": "LEAGUE",
+        "emblem": "https://crests.football-data.org/c111.png"
+      },
+      "home_team": {
+        "id": 100,
+        "name": "AS Roma",
+        "short_name": "Roma",
+        "tla": "ROM",
+        "crest": "https://crests.football-data.org/100.png"
+      },
+      "away_team": {
+        "id": 99,
+        "name": "ACF Fiorentina",
+        "short_name": "Fiorentina",
+        "tla": "FIO",
+        "crest": "https://crests.football-data.org/99.png"
+      },
+      "score": {
+        "winner": "HOME_TEAM",
+        "duration": "REGULAR",
+        "full_time": {
+          "home": 4,
+          "away": 0
+        },
+        "half_time": {
+          "home": 1,
+          "away": 0
+        },
+        "extra_time": {
+          "home": null,
+          "away": null
+        },
+        "penalties": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "id": 558621,
+      "utc_date": "2026-08-31T16:30:00Z",
+      "status": "FINISHED",
+      "matchday": 2,
+      "stage": "REGULAR_SEASON",
+      "group": null,
+      "last_updated": "2026-09-10T10:20:32Z",
+      "competition": {
+        "id": 2019,
+        "name": "Serie A",
+        "code": "SA",
+        "type": "LEAGUE",
+        "emblem": "https://crests.football-data.org/c111.png"
+      },
+      "home_team": {
+        "id": 5890,
+        "name": "US Lecce",
+        "short_name": "Lecce",
+        "tla": "USL",
+        "crest": "https://crests.football-data.org/5890.png"
+      },
+      "away_team": {
+        "id": 100,
+        "name": "AS Roma",
+        "short_name": "Roma",
+        "tla": "ROM",
+        "crest": "https://crests.football-data.org/100.png"
+      },
+      "score": {
+        "winner": "AWAY_TEAM",
+        "duration": "REGULAR",
+        "full_time": {
+          "home": 0,
+          "away": 4
+        },
+        "half_time": {
+          "home": 0,
+          "away": 3
+        },
+        "extra_time": {
+          "home": null,
+          "away": null
+        },
+        "penalties": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "id": 558611,
+      "utc_date": "2026-09-05T18:45:00Z",
+      "status": "FINISHED",
+      "matchday": 3,
+      "stage": "REGULAR_SEASON",
+      "group": null,
+      "last_updated": "2026-09-10T10:20:32Z",
+      "competition": {
+        "id": 2019,
+        "name": "Serie A",
+        "code": "SA",
+        "type": "LEAGUE",
+        "emblem": "https://crests.football-data.org/c111.png"
+      },
+      "home_team": {
+        "id": 100,
+        "name": "AS Roma",
+        "short_name": "Roma",
+        "tla": "ROM",
+        "crest": "https://crests.football-data.org/100.png"
+      },
+      "away_team": {
+        "id": 102,
+        "name": "Atalanta BC",
+        "short_name": "Atalanta",
+        "tla": "ATA",
+        "crest": "https://crests.football-data.org/102.png"
+      },
+      "score": {
+        "winner": "HOME_TEAM",
+        "duration": "REGULAR",
+        "full_time": {
+          "home": 2,
+          "away": 1
+        },
+        "half_time": {
+          "home": 0,
+          "away": 0
+        },
+        "extra_time": {
+          "home": null,
+          "away": null
+        },
+        "penalties": {
+          "home": null,
+          "away": null
+        }
+      }
+    }
+  ],
+  "upcoming_matches": [
+    {
+      "id": 575335,
+      "utc_date": "2026-09-10T16:45:00Z",
+      "status": "TIMED",
+      "matchday": 1,
+      "stage": "LEAGUE_STAGE",
+      "group": null,
+      "last_updated": "2026-09-10T10:20:31Z",
+      "competition": {
+        "id": 2001,
+        "name": "UEFA Champions League",
+        "code": "CL",
+        "type": "CUP",
+        "emblem": "https://crests.football-data.org/CL.png"
+      },
+      "home_team": {
+        "id": 613,
+        "name": "Fenerbahçe SK",
+        "short_name": "Fenerbahçe",
+        "tla": "FEN",
+        "crest": "https://crests.football-data.org/613.png"
+      },
+      "away_team": {
+        "id": 100,
+        "name": "AS Roma",
+        "short_name": "Roma",
+        "tla": "ROM",
+        "crest": "https://crests.football-data.org/100.png"
+      },
+      "score": {
+        "winner": null,
+        "duration": "REGULAR",
+        "full_time": {
+          "home": null,
+          "away": null
+        },
+        "half_time": {
+          "home": null,
+          "away": null
+        },
+        "extra_time": {
+          "home": null,
+          "away": null
+        },
+        "penalties": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "id": 558603,
+      "utc_date": "2026-09-14T16:30:00Z",
+      "status": "TIMED",
+      "matchday": 4,
+      "stage": "REGULAR_SEASON",
+      "group": null,
+      "last_updated": "2026-09-10T10:20:32Z",
+      "competition": {
+        "id": 2019,
+        "name": "Serie A",
+        "code": "SA",
+        "type": "LEAGUE",
+        "emblem": "https://crests.football-data.org/c111.png"
+      },
+      "home_team": {
+        "id": 586,
+        "name": "Torino FC",
+        "short_name": "Torino",
+        "tla": "TOR",
+        "crest": "https://crests.football-data.org/586.png"
+      },
+      "away_team": {
+        "id": 100,
+        "name": "AS Roma",
+        "short_name": "Roma",
+        "tla": "ROM",
+        "crest": "https://crests.football-data.org/100.png"
+      },
+      "score": {
+        "winner": null,
+        "duration": "REGULAR",
+        "full_time": {
+          "home": null,
+          "away": null
+        },
+        "half_time": {
+          "home": null,
+          "away": null
+        },
+        "extra_time": {
+          "home": null,
+          "away": null
+        },
+        "penalties": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "id": 558593,
+      "utc_date": "2026-09-19T16:00:00Z",
+      "status": "TIMED",
+      "matchday": 5,
+      "stage": "REGULAR_SEASON",
+      "group": null,
+      "last_updated": "2026-09-10T10:20:32Z",
+      "competition": {
+        "id": 2019,
+        "name": "Serie A",
+        "code": "SA",
+        "type": "LEAGUE",
+        "emblem": "https://crests.football-data.org/c111.png"
+      },
+      "home_team": {
+        "id": 100,
+        "name": "AS Roma",
+        "short_name": "Roma",
+        "tla": "ROM",
+        "crest": "https://crests.football-data.org/100.png"
+      },
+      "away_team": {
+        "id": 108,
+        "name": "FC Internazionale Milano",
+        "short_name": "Inter",
+        "tla": "INT",
+        "crest": "https://crests.football-data.org/108.png"
+      },
+      "score": {
+        "winner": null,
+        "duration": "REGULAR",
+        "full_time": {
+          "home": null,
+          "away": null
+        },
+        "half_time": {
+          "home": null,
+          "away": null
+        },
+        "extra_time": {
+          "home": null,
+          "away": null
+        },
+        "penalties": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "id": 558585,
+      "utc_date": "2026-10-11T10:30:00Z",
+      "status": "TIMED",
+      "matchday": 6,
+      "stage": "REGULAR_SEASON",
+      "group": null,
+      "last_updated": "2026-09-10T10:20:32Z",
+      "competition": {
+        "id": 2019,
+        "name": "Serie A",
+        "code": "SA",
+        "type": "LEAGUE",
+        "emblem": "https://crests.football-data.org/c111.png"
+      },
+      "home_team": {
+        "id": 7397,
+        "name": "Como 1907",
+        "short_name": "Como 1907",
+        "tla": "COM",
+        "crest": "https://crests.football-data.org/7397.png"
+      },
+      "away_team": {
+        "id": 100,
+        "name": "AS Roma",
+        "short_name": "Roma",
+        "tla": "ROM",
+        "crest": "https://crests.football-data.org/100.png"
+      },
+      "score": {
+        "winner": null,
+        "duration": "REGULAR",
+        "full_time": {
+          "home": null,
+          "away": null
+        },
+        "half_time": {
+          "home": null,
+          "away": null
+        },
+        "extra_time": {
+          "home": null,
+          "away": null
+        },
+        "penalties": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "id": 575352,
+      "utc_date": "2026-10-14T19:00:00Z",
+      "status": "TIMED",
+      "matchday": 2,
+      "stage": "LEAGUE_STAGE",
+      "group": null,
+      "last_updated": "2026-09-10T10:20:31Z",
+      "competition": {
+        "id": 2001,
+        "name": "UEFA Champions League",
+        "code": "CL",
+        "type": "CUP",
+        "emblem": "https://crests.football-data.org/CL.png"
+      },
+      "home_team": {
+        "id": 100,
+        "name": "AS Roma",
+        "short_name": "Roma",
+        "tla": "ROM",
+        "crest": "https://crests.football-data.org/100.png"
+      },
+      "away_team": {
+        "id": 86,
+        "name": "Real Madrid CF",
+        "short_name": "Real Madrid",
+        "tla": "RMA",
+        "crest": "https://crests.football-data.org/86.png"
+      },
+      "score": {
+        "winner": null,
+        "duration": "REGULAR",
+        "full_time": {
+          "home": null,
+          "away": null
+        },
+        "half_time": {
+          "home": null,
+          "away": null
+        },
+        "extra_time": {
+          "home": null,
+          "away": null
+        },
+        "penalties": {
+          "home": null,
+          "away": null
+        }
+      }
+    }
+  ],
+  "standings": {
+    "serie_a": {
+      "competition_code": "SA",
+      "name_en": "Serie A",
+      "name_bg": "Серия А",
+      "table_updated_at": null,
+      "roma": {
+        "stage": "REGULAR_SEASON",
+        "type": "TOTAL",
+        "group": "Matchday",
+        "position": 1,
+        "played_games": 3,
+        "form": null,
+        "won": 3,
+        "draw": 0,
+        "lost": 0,
+        "points": 9,
+        "goals_for": 10,
+        "goals_against": 1,
+        "goal_difference": 9,
+        "team": {
+          "id": 100,
+          "name": "AS Roma",
+          "short_name": "Roma",
+          "tla": "ROM",
+          "crest": "https://crests.football-data.org/100.png"
+        }
+      }
+    }
+  },
+  "squad": [
+    {
+      "id": 137693,
+      "name": "Anass Salah-Eddine",
+      "position": "Defence",
+      "date_of_birth": "2002-01-18",
+      "nationality": "Morocco",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
+    {
+      "id": 191705,
+      "name": "Daniele Ghilardi",
+      "position": "Defence",
+      "date_of_birth": "2003-01-06",
+      "nationality": "Italy",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
+    {
+      "id": 149173,
+      "name": "Devyne Rensch",
+      "position": "Defence",
+      "date_of_birth": "2003-01-18",
+      "nationality": "Netherlands",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
+    {
+      "id": 290391,
+      "name": "Emanuele Lulli",
+      "position": "Defence",
+      "date_of_birth": "2007-08-17",
+      "nationality": "Italy",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
+    {
+      "id": 526,
+      "name": "Evan N'Dicka",
+      "position": "Defence",
+      "date_of_birth": "1999-08-20",
+      "nationality": "Ivory Coast",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
+    {
+      "id": 1837,
+      "name": "Gianluca Mancini",
+      "position": "Defence",
+      "date_of_birth": "1996-04-17",
+      "nationality": "Italy",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
+    {
+      "id": 177590,
+      "name": "Konstantinos Koulierakis",
+      "position": "Defence",
+      "date_of_birth": "2003-11-28",
+      "nationality": "Greece",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
+    {
+      "id": 82020,
+      "name": "Leonardo Balerdi",
+      "position": "Defence",
+      "date_of_birth": "1999-01-26",
+      "nationality": "Argentina",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
+    {
+      "id": 32703,
+      "name": "Mario Hermoso",
+      "position": "Defence",
+      "date_of_birth": "1995-06-18",
+      "nationality": "Spain",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
+    {
+      "id": 46452,
+      "name": "Nahuel Molina",
+      "position": "Defence",
+      "date_of_birth": "1998-04-06",
+      "nationality": "Argentina",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
+    {
+      "id": 179164,
+      "name": "Wesley",
+      "position": "Defence",
+      "date_of_birth": "2003-09-06",
+      "nationality": "Brazil",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
+    {
+      "id": 191127,
+      "name": "Devis Vásquez",
+      "position": "Goalkeeper",
+      "date_of_birth": "2026-06-30",
+      "nationality": "Colombia",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
+    {
+      "id": 273759,
+      "name": "Giorgio De Marzi",
+      "position": "Goalkeeper",
+      "date_of_birth": "2007-04-18",
+      "nationality": "USA",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
+    {
+      "id": 16735,
+      "name": "Mile Svilar",
+      "position": "Goalkeeper",
+      "date_of_birth": "1999-08-27",
+      "nationality": "Serbia",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
+    {
+      "id": 1829,
+      "name": "Pierluigi Gollini",
+      "position": "Goalkeeper",
+      "date_of_birth": "1995-03-18",
+      "nationality": "Italy",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
+    {
+      "id": 1844,
+      "name": "Bryan Cristante",
+      "position": "Midfield",
+      "date_of_birth": "1995-03-03",
+      "nationality": "Italy",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
+    {
+      "id": 1819,
+      "name": "Lorenzo Pellegrini",
+      "position": "Midfield",
+      "date_of_birth": "1996-06-19",
+      "nationality": "Italy",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
+    {
+      "id": 102395,
+      "name": "Manu Koné",
+      "position": "Midfield",
+      "date_of_birth": "2001-05-17",
+      "nationality": "France",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
+    {
+      "id": 1848,
+      "name": "Marten de Roon",
+      "position": "Midfield",
+      "date_of_birth": "1991-03-29",
+      "nationality": "Netherlands",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
+    {
+      "id": 192382,
+      "name": "Niccolo Pisilli",
+      "position": "Midfield",
+      "date_of_birth": "2004-09-23",
+      "nationality": "Italy",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
+    {
+      "id": 261273,
+      "name": "Rodrigo Mora",
+      "position": "Midfield",
+      "date_of_birth": "2007-05-05",
+      "nationality": "Portugal",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
+    {
+      "id": 7457,
+      "name": "Donyell Malen",
+      "position": "Offence",
+      "date_of_birth": "1999-01-19",
+      "nationality": "Netherlands",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
+    {
+      "id": 171121,
+      "name": "Matias Soule",
+      "position": "Offence",
+      "date_of_birth": "2003-04-15",
+      "nationality": "Argentina",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
+    {
+      "id": 2046,
+      "name": "Paulo Dybala",
+      "position": "Offence",
+      "date_of_birth": "1993-11-15",
+      "nationality": "Argentina",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
+    {
+      "id": 170891,
+      "name": "Santiago Castro",
+      "position": "Offence",
+      "date_of_birth": "2004-09-18",
+      "nationality": "Argentina",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    }
+  ],
+  "provider_notes": {
+    "football_data": "Primary source for Roma fixtures, results, squad and Serie A standings.",
+    "the_sports_db": "Artwork enrichment source for badge, logo, jersey and fan-art links.",
+    "bigballsdata": "Reserved for future Serie A events, lineups, advanced match statistics and player statistics."
+  }
+}
