@@ -213,6 +213,10 @@ jobs:
             - `public/cards/last-match-bg.png`
             - `public/cards/next-match-en.png`
             - `public/cards/next-match-bg.png`
+            - `public/cards/standings-en.png`
+            - `public/cards/standings-bg.png`
+            - `public/cards/recent-form-en.png`
+            - `public/cards/recent-form-bg.png`
             - Last completed match and next fixture
             - Recent and upcoming fixtures
             - Serie A standing and points
