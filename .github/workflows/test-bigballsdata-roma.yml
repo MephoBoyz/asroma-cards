@@ -1,0 +1,276 @@
+name: Test BigBallsData AS Roma Enrichment
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  discover:
+    name: Discover Roma, Serie A and match enrichment
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test BigBallsData Soccer endpoints
+        env:
+          BIGBALLSDATA_TOKEN: ${{ secrets.BIGBALLSDATA_TOKEN }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import sys
+          from pathlib import Path
+
+          import requests
+
+          token = (os.environ.get("BIGBALLSDATA_TOKEN") or "").strip()
+
+          if not token:
+              print("ERROR: BIGBALLSDATA_TOKEN is not available.")
+              sys.exit(1)
+
+          base_url = "https://api.bigballsdata.com/v1"
+          headers = {
+              "Authorization": f"Bearer {token}",
+              "Accept": "application/json"
+          }
+
+          def request_json(label, path, params=None):
+              url = f"{base_url}{path}"
+
+              try:
+                  response = requests.get(
+                      url,
+                      headers=headers,
+                      params=params or {},
+                      timeout=30
+                  )
+              except requests.RequestException as error:
+                  print(f"\n{label}")
+                  print(f"REQUEST ERROR: {error}")
+                  return None
+
+              print(f"\n{'=' * 72}")
+              print(label)
+              print(f"GET {response.url}")
+              print(f"HTTP status: {response.status_code}")
+
+              if response.status_code != 200:
+                  print("Response preview:")
+                  print(response.text[:1000])
+                  return None
+
+              try:
+                  payload = response.json()
+              except ValueError:
+                  print("Response was not valid JSON:")
+                  print(response.text[:1000])
+                  return None
+
+              print("JSON response received.")
+              return payload
+
+          def extract_records(payload, possible_keys):
+              if not isinstance(payload, dict):
+                  return payload if isinstance(payload, list) else []
+
+              data = payload.get("data", payload)
+
+              if isinstance(data, list):
+                  return data
+
+              if isinstance(data, dict):
+                  for key in possible_keys:
+                      value = data.get(key)
+                      if isinstance(value, list):
+                          return value
+
+                  for key in possible_keys:
+                      value = payload.get(key)
+                      if isinstance(value, list):
+                          return value
+
+              for key in possible_keys:
+                  value = payload.get(key)
+                  if isinstance(value, list):
+                      return value
+
+              return []
+
+          def preview(value, limit=1800):
+              text = json.dumps(
+                  value,
+                  ensure_ascii=False,
+                  indent=2
+              )
+              print(text[:limit])
+
+          teams_payload = request_json(
+              "1. Search soccer teams for AS Roma",
+              "/teams",
+              {
+                  "sport": "soccer",
+                  "search": "AS Roma"
+              }
+          )
+
+          if teams_payload is None:
+              teams_payload = request_json(
+                  "1b. List soccer teams as a fallback",
+                  "/teams",
+                  {
+                      "sport": "soccer",
+                      "limit": 100
+                  }
+              )
+
+          teams = extract_records(
+              teams_payload,
+              ["teams", "results", "items"]
+          )
+
+          print(f"\nTeam records found: {len(teams)}")
+
+          roma_team = None
+
+          for team in teams:
+              if not isinstance(team, dict):
+                  continue
+
+              team_text = " ".join(
+                  str(team.get(key, ""))
+                  for key in [
+                      "name",
+                      "team_name",
+                      "display_name",
+                      "short_name"
+                  ]
+              ).lower()
+
+              if "roma" in team_text:
+                  roma_team = team
+                  break
+
+          if roma_team:
+              print("\nAS Roma candidate:")
+              preview(roma_team)
+          else:
+              print("\nNo AS Roma candidate found in this response.")
+
+          standings_payload = request_json(
+              "2. Test Serie A standings",
+              "/standings",
+              {
+                  "sport": "soccer",
+                  "league": "serie_a"
+              }
+          )
+
+          if standings_payload:
+              standings = extract_records(
+                  standings_payload,
+                  ["standings", "table", "results", "items"]
+              )
+
+              print(f"\nStanding rows found: {len(standings)}")
+
+              roma_standing = next(
+                  (
+                      row for row in standings
+                      if "roma" in json.dumps(row).lower()
+                  ),
+                  None
+              )
+
+              if roma_standing:
+                  print("\nAS Roma standings candidate:")
+                  preview(roma_standing)
+              else:
+                  print("\nNo Roma row found in returned standings.")
+
+          matches_payload = request_json(
+              "3. Search Serie A matches",
+              "/matches",
+              {
+                  "sport": "soccer",
+                  "league": "serie_a",
+                  "limit": 100
+              }
+          )
+
+          matches = extract_records(
+              matches_payload,
+              ["matches", "results", "items", "games"]
+          )
+
+          print(f"\nMatch records found: {len(matches)}")
+
+          roma_matches = [
+              match for match in matches
+              if "roma" in json.dumps(match).lower()
+          ]
+
+          print(f"Roma match candidates found: {len(roma_matches)}")
+
+          for index, match in enumerate(roma_matches[:5], start=1):
+              print(f"\nRoma match candidate #{index}:")
+              preview(match, limit=1200)
+
+          finished_match = next(
+              (
+                  match for match in roma_matches
+                  if str(
+                      match.get("status")
+                      or match.get("state")
+                      or ""
+                  ).lower()
+                  in {
+                      "finished",
+                      "final",
+                      "completed",
+                      "ft"
+                  }
+              ),
+              None
+          )
+
+          if not finished_match and roma_matches:
+              finished_match = roma_matches[0]
+
+          if not finished_match:
+              print("\nNo Roma match ID available for event/stat tests.")
+              sys.exit(0)
+
+          match_id = (
+              finished_match.get("id")
+              or finished_match.get("match_id")
+              or finished_match.get("game_id")
+          )
+
+          print(f"\nSelected match ID for enrichment tests: {match_id}")
+
+          if not match_id:
+              print("No usable match ID field found.")
+              sys.exit(0)
+
+          match_payload = request_json(
+              "4. Match detail",
+              f"/matches/{match_id}"
+          )
+
+          if match_payload:
+              print("\nMatch detail preview:")
+              preview(match_payload)
+
+          events_payload = request_json(
+              "5. Match events / scorers test",
+              f"/matches/{match_id}/events"
+          )
+
+          if events_payload:
+              events = extract_records(
+                  events_payload,
+                  ["events", "results", "items", "timeline"]
+              )
+              print(f"\nEvents
