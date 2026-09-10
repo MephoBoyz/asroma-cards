@@ -1,0 +1,111 @@
+:root {
+  --roma-red: #8b1a1a;
+  --roma-gold: #d4af37;
+  --bg-dark: #0f0f12;
+  --bg-card: #17171c;
+  --text-main: #f2f2f2;
+  --text-muted: #b8b8b8;
+  --font-main: "Oswald", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg-dark);
+  color: var(--text-main);
+  font-family: var(--font-main);
+  line-height: 1.4;
+}
+
+.site-header {
+  text-align: center;
+  padding: 24px 16px 12px;
+  border-bottom: 2px solid var(--roma-red);
+}
+
+.site-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--roma-gold);
+  letter-spacing: 0.5px;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+.lang-switch {
+  margin-top: 12px;
+}
+
+.lang-switch button {
+  background: transparent;
+  border: 1px solid var(--roma-gold);
+  color: var(--roma-gold);
+  padding: 4px 10px;
+  margin: 0 4px;
+  font-family: var(--font-main);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lang-switch button.active {
+  background: var(--roma-gold);
+  color: var(--bg-dark);
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+.card-section {
+  margin-bottom: 32px;
+}
+
+.card-section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  color: var(--roma-gold);
+}
+
+.card-preview {
+  background: var(--bg-card);
+  border: 1px solid #2a2a33;
+  border-radius: 8px;
+  padding: 16px;
+  min-height: 160px;
+  margin-bottom: 12px;
+}
+
+.download-btn {
+  background: var(--roma-red);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  font-family: var(--font-main);
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.squad-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.site-footer {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  padding: 24px 16px;
+  border-top: 1px solid #2a2a33;
+}
