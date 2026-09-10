@@ -40,11 +40,11 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-
-      - name: Install Python dependencies
-        run: |
+          
+         - name: Install Python dependencies and Chromium  run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
 
       - name: Decide whether an update is needed
         id: decision
@@ -156,7 +156,9 @@ jobs:
           THESPORTSDB_API_KEY: ${{ secrets.THESPORTSDB_API_KEY }}
         run: |
           python src/updater/fetch_roma_data.py
-
+      - name: Generate social-media card PNGs
+        run: |
+          python src/cards/render_cards.py
       - name: Show generated-data summary
         run: |
           python - <<'PY'
