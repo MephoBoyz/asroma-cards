@@ -10,8 +10,6 @@ on:
         type: boolean
 
   schedule:
-    # 08:15, 13:15, 18:15 and 23:15 Europe/Rome time.
-    # GitHub Actions supports an IANA timezone on scheduled workflows.
     - cron: "15 8,13,18,23 * * *"
       timezone: "Europe/Rome"
 
@@ -40,11 +38,11 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          
-         - name: Install Python dependencies and Chromium  run: |
+
+      - name: Install Python dependencies
+        run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
-          python -m playwright install --with-deps chromium
 
       - name: Decide whether an update is needed
         id: decision
@@ -122,8 +120,6 @@ jobs:
               reason = "No AS Roma fixture in the ±48-hour matchday window."
 
           print(reason)
-          print(f"should_update={str(should_update).lower()}")
-          print(f"reason={reason}")
 
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
               output.write(f"should_update={str(should_update).lower()}\n")
@@ -145,10 +141,11 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install Python dependencies
+      - name: Install Python dependencies and Chromium
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
 
       - name: Generate fresh AS Roma data
         env:
@@ -156,9 +153,11 @@ jobs:
           THESPORTSDB_API_KEY: ${{ secrets.THESPORTSDB_API_KEY }}
         run: |
           python src/updater/fetch_roma_data.py
+
       - name: Generate social-media card PNGs
         run: |
           python src/cards/render_cards.py
+
       - name: Show generated-data summary
         run: |
           python - <<'PY'
@@ -210,16 +209,20 @@ jobs:
             It updates:
 
             - `public/data/roma.json`
+            - `public/cards/last-match-en.png`
+            - `public/cards/last-match-bg.png`
+            - `public/cards/next-match-en.png`
+            - `public/cards/next-match-bg.png`
             - Last completed match and next fixture
             - Recent and upcoming fixtures
             - Serie A standing and points
-            - Current squad snapshot
             - TheSportsDB artwork references
 
-            Review the JSON and, later, the generated image cards. Merge this pull request to allow Netlify to publish the approved data.
+            Review the data and generated PNG cards. Merge this pull request to allow Netlify to publish the approved version.
           labels: |
             automated
             data-update
+            cards
           base: main
 
       - name: Report result
@@ -227,7 +230,7 @@ jobs:
           if [ -n "${{ steps.create_pr.outputs.pull-request-url }}" ]; then
             echo "Review PR: ${{ steps.create_pr.outputs.pull-request-url }}"
           else
-            echo "No PR created or updated because generated data did not change."
+            echo "No PR created or updated because generated data and cards did not change."
           fi
 
   skip-report:
