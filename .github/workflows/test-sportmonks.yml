@@ -1,0 +1,72 @@
+name: Test SportMonks Access
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-api:
+    name: Test SportMonks API
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install requests
+        run: python -m pip install requests==2.32.3
+
+      - name: Test SportMonks API
+        env:
+          SPORTMONKS_TOKEN: ${{ secrets.SPORTMONKS_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os
+          import sys
+          import requests
+
+          token = os.environ.get("SPORTMONKS_TOKEN")
+
+          if not token:
+              print("ERROR: SPORTMONKS_TOKEN is not available.")
+              sys.exit(1)
+
+          url = "https://api.sportmonks.com/v3/football/leagues"
+          response = requests.get(
+              url,
+              params={
+                  "api_token": token,
+                  "per_page": 5
+              },
+              headers={
+                  "Accept": "application/json"
+              },
+              timeout=30
+          )
+
+          print(f"HTTP status: {response.status_code}")
+
+          if response.status_code != 200:
+              print("SportMonks returned an error.")
+              print(response.text[:1000])
+              sys.exit(1)
+
+          payload = response.json()
+          leagues = payload.get("data", [])
+
+          print(f"API connection successful.")
+          print(f"Returned league records: {len(leagues)}")
+
+          for league in leagues:
+              print(
+                  f"- ID {league.get('id')}: "
+                  f"{league.get('name', 'Unknown')}"
+              )
+          PY
