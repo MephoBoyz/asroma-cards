@@ -43,7 +43,7 @@ TEXT = {
         "wins_short": "W",
         "draws_short": "D",
         "losses_short": "L",
-        "in_construction": "IN CONSTRUCTION"
+        "in_construction": "GIALLOROSSI · AS ROMA DATA"
     },
     "bg": {
         "last_match": "ПОСЛЕДЕН МАЧ",
@@ -66,7 +66,7 @@ TEXT = {
         "wins_short": "П",
         "draws_short": "Р",
         "losses_short": "З",
-        "in_construction": "В ПРОЦЕС НА РАЗРАБОТКА"
+        "in_construction": "GIALLOROSSI · AS ROMA DATA"
     }
 }
 
@@ -195,15 +195,10 @@ def competition_label(match, language):
 
 
 def watermark_text(config, language):
-    watermark = config.get("card_design", {}).get(
+    return config.get("card_design", {}).get(
         "watermark",
         TEXT[language]["in_construction"]
     )
-
-    if language == "bg" and watermark == "IN CONSTRUCTION":
-        return TEXT[language]["in_construction"]
-
-    return watermark
 
 
 def shared_style(background):
