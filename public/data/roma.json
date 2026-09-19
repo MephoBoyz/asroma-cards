@@ -1,7 +1,7 @@
 {
   "meta": {
     "project": "AS Roma Cards",
-    "generated_at_utc": "2026-09-19T18:17:09.726280Z",
+    "generated_at_utc": "2026-09-19T18:35:45.730081Z",
     "timezone": "Europe/Rome",
     "default_language": "en",
     "supported_languages": [
@@ -259,7 +259,7 @@
       "matchday": 1,
       "stage": "LEAGUE_STAGE",
       "group": null,
-      "last_updated": "2026-09-19T15:20:08Z",
+      "last_updated": "2026-09-19T20:20:16Z",
       "competition": {
         "id": 2001,
         "name": "UEFA Champions League",
@@ -461,7 +461,7 @@
       "matchday": 2,
       "stage": "LEAGUE_STAGE",
       "group": null,
-      "last_updated": "2026-09-19T15:20:08Z",
+      "last_updated": "2026-09-19T20:20:16Z",
       "competition": {
         "id": 2001,
         "name": "UEFA Champions League",
@@ -561,7 +561,7 @@
       "matchday": 3,
       "stage": "LEAGUE_STAGE",
       "group": null,
-      "last_updated": "2026-09-19T15:20:08Z",
+      "last_updated": "2026-09-19T20:20:16Z",
       "competition": {
         "id": 2001,
         "name": "UEFA Champions League",
