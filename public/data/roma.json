@@ -1,7 +1,7 @@
 {
   "meta": {
     "project": "AS Roma Cards",
-    "generated_at_utc": "2026-09-19T18:17:09.726280Z",
+    "generated_at_utc": "2026-09-21T20:25:23.066387Z",
     "timezone": "Europe/Rome",
     "default_language": "en",
     "supported_languages": [
@@ -58,7 +58,7 @@
     "matchday": 5,
     "stage": "REGULAR_SEASON",
     "group": null,
-    "last_updated": "2026-09-19T19:58:01Z",
+    "last_updated": "2026-09-21T20:20:37Z",
     "competition": {
       "id": 2019,
       "name": "Serie A",
@@ -108,7 +108,7 @@
     "matchday": 6,
     "stage": "REGULAR_SEASON",
     "group": null,
-    "last_updated": "2026-09-19T10:20:33Z",
+    "last_updated": "2026-09-21T20:20:37Z",
     "competition": {
       "id": 2019,
       "name": "Serie A",
@@ -159,7 +159,7 @@
       "matchday": 2,
       "stage": "REGULAR_SEASON",
       "group": null,
-      "last_updated": "2026-09-19T10:20:33Z",
+      "last_updated": "2026-09-21T20:20:37Z",
       "competition": {
         "id": 2019,
         "name": "Serie A",
@@ -209,7 +209,7 @@
       "matchday": 3,
       "stage": "REGULAR_SEASON",
       "group": null,
-      "last_updated": "2026-09-19T10:20:33Z",
+      "last_updated": "2026-09-21T20:20:37Z",
       "competition": {
         "id": 2019,
         "name": "Serie A",
@@ -259,7 +259,7 @@
       "matchday": 1,
       "stage": "LEAGUE_STAGE",
       "group": null,
-      "last_updated": "2026-09-19T15:20:08Z",
+      "last_updated": "2026-09-21T20:20:36Z",
       "competition": {
         "id": 2001,
         "name": "UEFA Champions League",
@@ -309,7 +309,7 @@
       "matchday": 4,
       "stage": "REGULAR_SEASON",
       "group": null,
-      "last_updated": "2026-09-19T10:20:33Z",
+      "last_updated": "2026-09-21T20:20:37Z",
       "competition": {
         "id": 2019,
         "name": "Serie A",
@@ -359,7 +359,7 @@
       "matchday": 5,
       "stage": "REGULAR_SEASON",
       "group": null,
-      "last_updated": "2026-09-19T19:58:01Z",
+      "last_updated": "2026-09-21T20:20:37Z",
       "competition": {
         "id": 2019,
         "name": "Serie A",
@@ -411,7 +411,7 @@
       "matchday": 6,
       "stage": "REGULAR_SEASON",
       "group": null,
-      "last_updated": "2026-09-19T10:20:33Z",
+      "last_updated": "2026-09-21T20:20:37Z",
       "competition": {
         "id": 2019,
         "name": "Serie A",
@@ -461,7 +461,7 @@
       "matchday": 2,
       "stage": "LEAGUE_STAGE",
       "group": null,
-      "last_updated": "2026-09-19T15:20:08Z",
+      "last_updated": "2026-09-21T20:20:36Z",
       "competition": {
         "id": 2001,
         "name": "UEFA Champions League",
@@ -511,7 +511,7 @@
       "matchday": 7,
       "stage": "REGULAR_SEASON",
       "group": null,
-      "last_updated": "2026-09-19T10:20:33Z",
+      "last_updated": "2026-09-21T20:20:37Z",
       "competition": {
         "id": 2019,
         "name": "Serie A",
@@ -561,7 +561,7 @@
       "matchday": 3,
       "stage": "LEAGUE_STAGE",
       "group": null,
-      "last_updated": "2026-09-19T15:20:08Z",
+      "last_updated": "2026-09-21T20:20:36Z",
       "competition": {
         "id": 2001,
         "name": "UEFA Champions League",
@@ -611,7 +611,7 @@
       "matchday": 8,
       "stage": "REGULAR_SEASON",
       "group": null,
-      "last_updated": "2026-09-19T10:20:33Z",
+      "last_updated": "2026-09-21T20:20:37Z",
       "competition": {
         "id": 2019,
         "name": "Serie A",
