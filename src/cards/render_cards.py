@@ -1041,9 +1041,21 @@ def main():
                     print(f"Skipping unsupported language: {language}")
                     continue
 
+                coppa_italia = data.get("coppa_italia", {}) or {}
+
                 match_cards = [
                     ("last-match", data.get("last_match"), "last"),
-                    ("next-match", data.get("next_match"), "next")
+                    ("next-match", data.get("next_match"), "next"),
+                    (
+                        "coppa-italia-last-match",
+                        coppa_italia.get("last_match"),
+                        "last"
+                    ),
+                    (
+                        "coppa-italia-next-match",
+                        coppa_italia.get("next_match"),
+                        "next"
+                    )
                 ]
 
                 for filename_prefix, match, card_type in match_cards:
