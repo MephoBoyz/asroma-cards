@@ -1,16 +1,16 @@
 {
   "project": {
     "name": "AS Roma Cards",
-    "channel_name": "IN CONSTRUCTION",
+    "channel_name": "GIALLOROSSI · AS ROMA DATA",
     "default_language": "en",
     "supported_languages": ["en", "bg"],
     "timezone": "Europe/Rome",
-    "show_squad": false
+    "show_squad": true
   },
   "team": {
     "canonical_name": "AS Roma",
     "display_name_en": "AS Roma",
-    "display_name_bg": "АС Рома",
+    "display_name_bg": "Рома",
     "football_data_team_id": 100,
     "the_sports_db_search": "AS Roma",
     "bigballsdata_team_search": "AS Roma",
@@ -48,6 +48,7 @@
       "standings": false
     },
     "coppa_italia": {
+      "the_sports_db_league_id": "4506",
       "name_en": "Coppa Italia",
       "name_bg": "Купа на Италия",
       "enabled": true,
