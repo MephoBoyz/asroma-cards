@@ -3,6 +3,7 @@
 import json
 import os
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -26,22 +27,46 @@ def env_value(name):
     return value
 
 
-def get_json(url, headers=None, params=None, timeout=30):
-    response = requests.get(
-        url,
-        headers=headers or {},
-        params=params or {},
-        timeout=timeout
-    )
+def get_json(url, headers=None, params=None, timeout=30, retries=3, backoff_seconds=2):
+    attempt = 0
 
-    if response.status_code != 200:
+    while True:
+        attempt += 1
+        response = requests.get(
+            url,
+            headers=headers or {},
+            params=params or {},
+            timeout=timeout
+        )
+
+        if response.status_code == 200:
+            return response.json()
+
+        is_retryable = response.status_code == 429 or response.status_code >= 500
+
+        if is_retryable and attempt <= retries:
+            wait_seconds = backoff_seconds * (2 ** (attempt - 1))
+            retry_after = response.headers.get("Retry-After")
+
+            if retry_after:
+                try:
+                    wait_seconds = max(wait_seconds, float(retry_after))
+                except ValueError:
+                    pass
+
+            print(
+                f"Request to {response.url} failed with "
+                f"{response.status_code}, retrying in "
+                f"{wait_seconds:.0f}s (attempt {attempt}/{retries})..."
+            )
+            time.sleep(wait_seconds)
+            continue
+
         preview = response.text[:500].replace("\n", " ")
         raise RuntimeError(
             f"Request failed: {response.status_code} for {response.url}. "
             f"Response: {preview}"
         )
-
-    return response.json()
 
 
 def get_optional_json(url, headers=None, params=None, timeout=30):
@@ -246,6 +271,148 @@ def fetch_artwork(api_key, team_search):
     }
 
 
+def thesportsdb_status_to_football_data(event):
+    home_score = event.get("intHomeScore")
+    away_score = event.get("intAwayScore")
+
+    if home_score is not None and away_score is not None:
+        return "FINISHED"
+
+    return "SCHEDULED"
+
+
+def thesportsdb_score(event, status):
+    if status != "FINISHED":
+        return {}
+
+    def to_int(value):
+        try:
+            return int(value)
+        except (TypeError, ValueError):
+            return None
+
+    return {
+        "fullTime": {
+            "home": to_int(event.get("intHomeScore")),
+            "away": to_int(event.get("intAwayScore"))
+        }
+    }
+
+
+def thesportsdb_event_to_football_data_shape(event):
+    """Reshape a TheSportsDB event into the football-data.org match shape
+    so it can be run through the existing normalize_match(), keeping a
+    single source of truth for the normalized output format."""
+
+    utc_date = None
+    date_event = event.get("dateEvent")
+    time_event = event.get("strTime")
+
+    if date_event:
+        utc_date = f"{date_event}T{time_event or '00:00:00'}Z"
+
+    status = thesportsdb_status_to_football_data(event)
+
+    return {
+        "id": event.get("idEvent"),
+        "utcDate": utc_date,
+        "status": status,
+        "matchday": event.get("intRound"),
+        "stage": event.get("strRound"),
+        "group": None,
+        "lastUpdated": event.get("strTimestamp"),
+        "competition": {
+            "id": event.get("idLeague"),
+            "name": event.get("strLeague"),
+            "code": None,
+            "type": "CUP",
+            "emblem": None
+        },
+        "homeTeam": {
+            "id": event.get("idHomeTeam"),
+            "name": event.get("strHomeTeam"),
+            "shortName": event.get("strHomeTeam"),
+            "tla": None,
+            "crest": None
+        },
+        "awayTeam": {
+            "id": event.get("idAwayTeam"),
+            "name": event.get("strAwayTeam"),
+            "shortName": event.get("strAwayTeam"),
+            "tla": None,
+            "crest": None
+        },
+        "score": thesportsdb_score(event, status)
+    }
+
+
+def fetch_coppa_italia_matches(api_key, team_id, league_id):
+    """Team-scoped, season-agnostic Coppa Italia fixtures/results via
+    TheSportsDB, filtered down to the Coppa Italia league id. Uses
+    eventslast/eventsnext (last & next 5 events for the team across all
+    competitions) rather than a season-scoped endpoint, so there is no
+    season-string convention to introduce or maintain."""
+
+    empty_result = {
+        "available": False,
+        "last_match": None,
+        "next_match": None,
+        "recent_matches": [],
+        "upcoming_matches": []
+    }
+
+    if not team_id:
+        print("Skipping Coppa Italia fetch: no TheSportsDB team id available.")
+        return empty_result
+
+    past_payload = get_optional_json(
+        f"{THESPORTSDB_BASE_URL}/{api_key}/eventslast.php",
+        params={"id": team_id}
+    )
+    next_payload = get_optional_json(
+        f"{THESPORTSDB_BASE_URL}/{api_key}/eventsnext.php",
+        params={"id": team_id}
+    )
+
+    if past_payload is None and next_payload is None:
+        return empty_result
+
+    def coppa_events(payload):
+        # NOTE: TheSportsDB's team-scoped endpoints have historically used
+        # inconsistent root keys ("results" vs "events") between
+        # eventslast.php and eventsnext.php, and this hasn't been verified
+        # against a live response here. Check both defensively rather than
+        # assume one - confirm the real key against a live call before
+        # relying on this in production, and simplify once confirmed.
+        payload = payload or {}
+        events = payload.get("results") or payload.get("events") or []
+
+        return [
+            event for event in events
+            if safe_text(event.get("idLeague")) == league_id
+        ]
+
+    past_events = coppa_events(past_payload)
+    upcoming_events = coppa_events(next_payload)
+
+    recent_matches = [
+        normalize_match(thesportsdb_event_to_football_data_shape(event))
+        for event in past_events
+    ]
+    upcoming_matches = [
+        normalize_match(thesportsdb_event_to_football_data_shape(event))
+        for event in upcoming_events
+    ]
+
+    return {
+        "available": True,
+        "last_match": recent_matches[0] if recent_matches else None,
+        "next_match": upcoming_matches[0] if upcoming_matches else None,
+        "recent_matches": recent_matches,
+        "upcoming_matches": upcoming_matches
+    }
+
+
 def main():
     football_data_token = env_value("FOOTBALL_DATA_TOKEN")
     thesportsdb_api_key = env_value("THESPORTSDB_API_KEY")
@@ -319,6 +486,16 @@ def main():
     print("Fetching AS Roma artwork...")
     artwork = fetch_artwork(thesportsdb_api_key, team_search)
 
+    coppa_italia_config = competitions_config.get("coppa_italia", {})
+    coppa_italia_league_id = coppa_italia_config.get("the_sports_db_league_id")
+
+    print("Fetching Coppa Italia fixtures/results...")
+    coppa_italia_data = fetch_coppa_italia_matches(
+        thesportsdb_api_key,
+        artwork.get("team_id"),
+        coppa_italia_league_id
+    )
+
     squad = normalize_squad(team_payload.get("squad", []))
     last_match = normalize_match(
         (finished_payload.get("matches") or [None])[0]
@@ -350,6 +527,9 @@ def main():
                 "the_sports_db_artwork": (
                     "ok" if artwork.get("available") else "unavailable"
                 ),
+                "the_sports_db_coppa_italia": (
+                    "ok" if coppa_italia_data.get("available") else "unavailable"
+                ),
                 "bigballsdata": "not_yet_integrated"
             }
         },
@@ -363,6 +543,15 @@ def main():
         "next_match": next_match,
         "recent_matches": recent_matches,
         "upcoming_matches": upcoming_matches,
+        "coppa_italia": {
+            "name_en": coppa_italia_config.get("name_en"),
+            "name_bg": coppa_italia_config.get("name_bg"),
+            "available": coppa_italia_data.get("available"),
+            "last_match": coppa_italia_data.get("last_match"),
+            "next_match": coppa_italia_data.get("next_match"),
+            "recent_matches": coppa_italia_data.get("recent_matches", []),
+            "upcoming_matches": coppa_italia_data.get("upcoming_matches", [])
+        },
         "standings": {
             "serie_a": {
                 "competition_code": serie_a["football_data_code"],
@@ -379,8 +568,10 @@ def main():
                 "squad and Serie A standings."
             ),
             "the_sports_db": (
-                "Artwork enrichment source for badge, logo, "
-                "jersey and fan-art links."
+                "Artwork enrichment source for badge, logo, jersey and "
+                "fan-art links, and free-tier source for Coppa Italia "
+                "fixtures/results (not available on football-data.org's "
+                "free tier)."
             ),
             "bigballsdata": (
                 "Reserved for future Serie A events, lineups, "
