@@ -1,23 +1,24 @@
 {
   "meta": {
     "project": "AS Roma Cards",
-    "generated_at_utc": "2026-09-19T18:17:09.726280Z",
+    "generated_at_utc": "2026-10-11T00:13:53.480479Z",
     "timezone": "Europe/Rome",
     "default_language": "en",
     "supported_languages": [
       "en",
       "bg"
     ],
-    "show_squad": false,
+    "show_squad": true,
     "source_status": {
       "football_data": "ok",
       "the_sports_db_artwork": "ok",
+      "the_sports_db_coppa_italia": "ok",
       "bigballsdata": "not_yet_integrated"
     }
   },
   "team": {
     "display_name_en": "AS Roma",
-    "display_name_bg": "АС Рома",
+    "display_name_bg": "Рома",
     "football_data": {
       "id": 100,
       "name": "AS Roma",
@@ -58,7 +59,7 @@
     "matchday": 5,
     "stage": "REGULAR_SEASON",
     "group": null,
-    "last_updated": "2026-09-19T19:58:01Z",
+    "last_updated": "2026-10-11T00:20:32Z",
     "competition": {
       "id": 2019,
       "name": "Serie A",
@@ -108,7 +109,7 @@
     "matchday": 6,
     "stage": "REGULAR_SEASON",
     "group": null,
-    "last_updated": "2026-09-19T10:20:33Z",
+    "last_updated": "2026-10-11T01:32:00Z",
     "competition": {
       "id": 2019,
       "name": "Serie A",
@@ -159,7 +160,7 @@
       "matchday": 2,
       "stage": "REGULAR_SEASON",
       "group": null,
-      "last_updated": "2026-09-19T10:20:33Z",
+      "last_updated": "2026-10-11T00:20:32Z",
       "competition": {
         "id": 2019,
         "name": "Serie A",
@@ -209,7 +210,7 @@
       "matchday": 3,
       "stage": "REGULAR_SEASON",
       "group": null,
-      "last_updated": "2026-09-19T10:20:33Z",
+      "last_updated": "2026-10-11T00:20:32Z",
       "competition": {
         "id": 2019,
         "name": "Serie A",
@@ -259,7 +260,7 @@
       "matchday": 1,
       "stage": "LEAGUE_STAGE",
       "group": null,
-      "last_updated": "2026-09-19T15:20:08Z",
+      "last_updated": "2026-10-11T00:20:31Z",
       "competition": {
         "id": 2001,
         "name": "UEFA Champions League",
@@ -309,7 +310,7 @@
       "matchday": 4,
       "stage": "REGULAR_SEASON",
       "group": null,
-      "last_updated": "2026-09-19T10:20:33Z",
+      "last_updated": "2026-10-11T00:20:32Z",
       "competition": {
         "id": 2019,
         "name": "Serie A",
@@ -359,7 +360,7 @@
       "matchday": 5,
       "stage": "REGULAR_SEASON",
       "group": null,
-      "last_updated": "2026-09-19T19:58:01Z",
+      "last_updated": "2026-10-11T00:20:32Z",
       "competition": {
         "id": 2019,
         "name": "Serie A",
@@ -411,7 +412,7 @@
       "matchday": 6,
       "stage": "REGULAR_SEASON",
       "group": null,
-      "last_updated": "2026-09-19T10:20:33Z",
+      "last_updated": "2026-10-11T01:32:00Z",
       "competition": {
         "id": 2019,
         "name": "Serie A",
@@ -461,7 +462,7 @@
       "matchday": 2,
       "stage": "LEAGUE_STAGE",
       "group": null,
-      "last_updated": "2026-09-19T15:20:08Z",
+      "last_updated": "2026-10-11T00:20:31Z",
       "competition": {
         "id": 2001,
         "name": "UEFA Champions League",
@@ -511,7 +512,7 @@
       "matchday": 7,
       "stage": "REGULAR_SEASON",
       "group": null,
-      "last_updated": "2026-09-19T10:20:33Z",
+      "last_updated": "2026-10-11T01:32:07Z",
       "competition": {
         "id": 2019,
         "name": "Serie A",
@@ -561,7 +562,7 @@
       "matchday": 3,
       "stage": "LEAGUE_STAGE",
       "group": null,
-      "last_updated": "2026-09-19T15:20:08Z",
+      "last_updated": "2026-10-11T00:20:31Z",
       "competition": {
         "id": 2001,
         "name": "UEFA Champions League",
@@ -611,7 +612,7 @@
       "matchday": 8,
       "stage": "REGULAR_SEASON",
       "group": null,
-      "last_updated": "2026-09-19T10:20:33Z",
+      "last_updated": "2026-10-11T00:20:32Z",
       "competition": {
         "id": 2019,
         "name": "Serie A",
@@ -655,6 +656,15 @@
       }
     }
   ],
+  "coppa_italia": {
+    "name_en": "Coppa Italia",
+    "name_bg": "Купа на Италия",
+    "available": true,
+    "last_match": null,
+    "next_match": null,
+    "recent_matches": [],
+    "upcoming_matches": []
+  },
   "standings": {
     "serie_a": {
       "competition_code": "SA",
@@ -665,7 +675,7 @@
         "stage": "REGULAR_SEASON",
         "type": "TOTAL",
         "group": "Matchday",
-        "position": 1,
+        "position": 2,
         "played_games": 5,
         "form": null,
         "won": 4,
@@ -939,7 +949,7 @@
   ],
   "provider_notes": {
     "football_data": "Primary source for Roma fixtures, results, squad and Serie A standings.",
-    "the_sports_db": "Artwork enrichment source for badge, logo, jersey and fan-art links.",
+    "the_sports_db": "Artwork enrichment source for badge, logo, jersey and fan-art links, and free-tier source for Coppa Italia fixtures/results (not available on football-data.org's free tier).",
     "bigballsdata": "Reserved for future Serie A events, lineups, advanced match statistics and player statistics."
   }
 }
