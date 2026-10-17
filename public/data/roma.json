@@ -1,7 +1,7 @@
 {
   "meta": {
     "project": "AS Roma Cards",
-    "generated_at_utc": "2026-10-12T15:15:57.092025Z",
+    "generated_at_utc": "2026-10-17T23:06:37.813074Z",
     "timezone": "Europe/Rome",
     "default_language": "en",
     "supported_languages": [
@@ -53,13 +53,13 @@
     }
   },
   "last_match": {
-    "id": 558585,
-    "utc_date": "2026-10-11T10:30:00Z",
+    "id": 558572,
+    "utc_date": "2026-10-17T18:45:00Z",
     "status": "FINISHED",
-    "matchday": 6,
+    "matchday": 7,
     "stage": "REGULAR_SEASON",
     "group": null,
-    "last_updated": "2026-10-12T15:20:35Z",
+    "last_updated": "2026-10-18T00:20:31Z",
     "competition": {
       "id": 2019,
       "name": "Serie A",
@@ -68,24 +68,24 @@
       "emblem": "https://crests.football-data.org/c111.png"
     },
     "home_team": {
-      "id": 7397,
-      "name": "Como 1907",
-      "short_name": "Como 1907",
-      "tla": "COM",
-      "crest": "https://crests.football-data.org/7397.png"
-    },
-    "away_team": {
       "id": 100,
       "name": "AS Roma",
       "short_name": "Roma",
       "tla": "ROM",
       "crest": "https://crests.football-data.org/100.png"
     },
+    "away_team": {
+      "id": 107,
+      "name": "Genoa CFC",
+      "short_name": "Genoa",
+      "tla": "GEN",
+      "crest": "https://crests.football-data.org/107.png"
+    },
     "score": {
-      "winner": "DRAW",
+      "winner": "HOME_TEAM",
       "duration": "REGULAR",
       "full_time": {
-        "home": 0,
+        "home": 2,
         "away": 0
       },
       "half_time": {
@@ -103,13 +103,13 @@
     }
   },
   "next_match": {
-    "id": 575352,
-    "utc_date": "2026-10-14T19:00:00Z",
+    "id": 575364,
+    "utc_date": "2026-10-20T19:00:00Z",
     "status": "TIMED",
-    "matchday": 2,
+    "matchday": 3,
     "stage": "LEAGUE_STAGE",
     "group": null,
-    "last_updated": "2026-10-12T15:20:34Z",
+    "last_updated": "2026-10-18T00:20:30Z",
     "competition": {
       "id": 2001,
       "name": "UEFA Champions League",
@@ -125,11 +125,11 @@
       "crest": "https://crests.football-data.org/100.png"
     },
     "away_team": {
-      "id": 86,
-      "name": "Real Madrid CF",
-      "short_name": "Real Madrid",
-      "tla": "RMA",
-      "crest": "https://crests.football-data.org/86.png"
+      "id": 7509,
+      "name": "ŠK Slovan Bratislava",
+      "short_name": "Sl. Bratislava",
+      "tla": "SBA",
+      "crest": "https://crests.football-data.org/7509.png"
     },
     "score": {
       "winner": null,
@@ -154,113 +154,13 @@
   },
   "recent_matches": [
     {
-      "id": 558611,
-      "utc_date": "2026-09-05T18:45:00Z",
-      "status": "FINISHED",
-      "matchday": 3,
-      "stage": "REGULAR_SEASON",
-      "group": null,
-      "last_updated": "2026-10-12T15:20:35Z",
-      "competition": {
-        "id": 2019,
-        "name": "Serie A",
-        "code": "SA",
-        "type": "LEAGUE",
-        "emblem": "https://crests.football-data.org/c111.png"
-      },
-      "home_team": {
-        "id": 100,
-        "name": "AS Roma",
-        "short_name": "Roma",
-        "tla": "ROM",
-        "crest": "https://crests.football-data.org/100.png"
-      },
-      "away_team": {
-        "id": 102,
-        "name": "Atalanta BC",
-        "short_name": "Atalanta",
-        "tla": "ATA",
-        "crest": "https://crests.football-data.org/102.png"
-      },
-      "score": {
-        "winner": "HOME_TEAM",
-        "duration": "REGULAR",
-        "full_time": {
-          "home": 2,
-          "away": 1
-        },
-        "half_time": {
-          "home": 0,
-          "away": 0
-        },
-        "extra_time": {
-          "home": null,
-          "away": null
-        },
-        "penalties": {
-          "home": null,
-          "away": null
-        }
-      }
-    },
-    {
-      "id": 575335,
-      "utc_date": "2026-09-10T16:45:00Z",
-      "status": "FINISHED",
-      "matchday": 1,
-      "stage": "LEAGUE_STAGE",
-      "group": null,
-      "last_updated": "2026-10-12T15:20:34Z",
-      "competition": {
-        "id": 2001,
-        "name": "UEFA Champions League",
-        "code": "CL",
-        "type": "CUP",
-        "emblem": "https://crests.football-data.org/CL.png"
-      },
-      "home_team": {
-        "id": 613,
-        "name": "Fenerbahçe SK",
-        "short_name": "Fenerbahçe",
-        "tla": "FEN",
-        "crest": "https://crests.football-data.org/613.png"
-      },
-      "away_team": {
-        "id": 100,
-        "name": "AS Roma",
-        "short_name": "Roma",
-        "tla": "ROM",
-        "crest": "https://crests.football-data.org/100.png"
-      },
-      "score": {
-        "winner": "DRAW",
-        "duration": "REGULAR",
-        "full_time": {
-          "home": 1,
-          "away": 1
-        },
-        "half_time": {
-          "home": 0,
-          "away": 1
-        },
-        "extra_time": {
-          "home": null,
-          "away": null
-        },
-        "penalties": {
-          "home": null,
-          "away": null
-        }
-      }
-    },
-    {
       "id": 558603,
       "utc_date": "2026-09-14T16:30:00Z",
       "status": "FINISHED",
       "matchday": 4,
       "stage": "REGULAR_SEASON",
       "group": null,
-      "last_updated": "2026-10-12T15:20:35Z",
+      "last_updated": "2026-10-18T00:20:31Z",
       "competition": {
         "id": 2019,
         "name": "Serie A",
@@ -310,7 +210,7 @@
       "matchday": 5,
       "stage": "REGULAR_SEASON",
       "group": null,
-      "last_updated": "2026-10-12T15:20:35Z",
+      "last_updated": "2026-10-18T00:20:31Z",
       "competition": {
         "id": 2019,
         "name": "Serie A",
@@ -360,7 +260,7 @@
       "matchday": 6,
       "stage": "REGULAR_SEASON",
       "group": null,
-      "last_updated": "2026-10-12T15:20:35Z",
+      "last_updated": "2026-10-18T00:20:31Z",
       "competition": {
         "id": 2019,
         "name": "Serie A",
@@ -402,17 +302,15 @@
           "away": null
         }
       }
-    }
-  ],
-  "upcoming_matches": [
+    },
     {
       "id": 575352,
       "utc_date": "2026-10-14T19:00:00Z",
-      "status": "TIMED",
+      "status": "FINISHED",
       "matchday": 2,
       "stage": "LEAGUE_STAGE",
       "group": null,
-      "last_updated": "2026-10-12T15:20:34Z",
+      "last_updated": "2026-10-18T00:20:30Z",
       "competition": {
         "id": 2001,
         "name": "UEFA Champions League",
@@ -435,15 +333,15 @@
         "crest": "https://crests.football-data.org/86.png"
       },
       "score": {
-        "winner": null,
+        "winner": "AWAY_TEAM",
         "duration": "REGULAR",
         "full_time": {
-          "home": null,
-          "away": null
+          "home": 3,
+          "away": 4
         },
         "half_time": {
-          "home": null,
-          "away": null
+          "home": 1,
+          "away": 1
         },
         "extra_time": {
           "home": null,
@@ -458,11 +356,11 @@
     {
       "id": 558572,
       "utc_date": "2026-10-17T18:45:00Z",
-      "status": "TIMED",
+      "status": "FINISHED",
       "matchday": 7,
       "stage": "REGULAR_SEASON",
       "group": null,
-      "last_updated": "2026-10-12T15:20:35Z",
+      "last_updated": "2026-10-18T00:20:31Z",
       "competition": {
         "id": 2019,
         "name": "Serie A",
@@ -485,15 +383,15 @@
         "crest": "https://crests.football-data.org/107.png"
       },
       "score": {
-        "winner": null,
+        "winner": "HOME_TEAM",
         "duration": "REGULAR",
         "full_time": {
-          "home": null,
-          "away": null
+          "home": 2,
+          "away": 0
         },
         "half_time": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 0
         },
         "extra_time": {
           "home": null,
@@ -504,7 +402,9 @@
           "away": null
         }
       }
-    },
+    }
+  ],
+  "upcoming_matches": [
     {
       "id": 575364,
       "utc_date": "2026-10-20T19:00:00Z",
@@ -512,7 +412,7 @@
       "matchday": 3,
       "stage": "LEAGUE_STAGE",
       "group": null,
-      "last_updated": "2026-10-12T15:20:34Z",
+      "last_updated": "2026-10-18T00:20:30Z",
       "competition": {
         "id": 2001,
         "name": "UEFA Champions League",
@@ -562,7 +462,7 @@
       "matchday": 8,
       "stage": "REGULAR_SEASON",
       "group": null,
-      "last_updated": "2026-10-12T15:20:35Z",
+      "last_updated": "2026-10-18T00:20:31Z",
       "competition": {
         "id": 2019,
         "name": "Serie A",
@@ -612,7 +512,7 @@
       "matchday": 9,
       "stage": "REGULAR_SEASON",
       "group": null,
-      "last_updated": "2026-10-12T15:20:35Z",
+      "last_updated": "2026-10-18T00:20:31Z",
       "competition": {
         "id": 2019,
         "name": "Serie A",
@@ -633,6 +533,106 @@
         "short_name": "Cagliari",
         "tla": "CAG",
         "crest": "https://crests.football-data.org/104.png"
+      },
+      "score": {
+        "winner": null,
+        "duration": "REGULAR",
+        "full_time": {
+          "home": null,
+          "away": null
+        },
+        "half_time": {
+          "home": null,
+          "away": null
+        },
+        "extra_time": {
+          "home": null,
+          "away": null
+        },
+        "penalties": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "id": 558542,
+      "utc_date": "2026-10-31T17:00:00Z",
+      "status": "TIMED",
+      "matchday": 10,
+      "stage": "REGULAR_SEASON",
+      "group": null,
+      "last_updated": "2026-10-18T00:20:31Z",
+      "competition": {
+        "id": 2019,
+        "name": "Serie A",
+        "code": "SA",
+        "type": "LEAGUE",
+        "emblem": "https://crests.football-data.org/c111.png"
+      },
+      "home_team": {
+        "id": 115,
+        "name": "Udinese Calcio",
+        "short_name": "Udinese",
+        "tla": "UDI",
+        "crest": "https://crests.football-data.org/115.png"
+      },
+      "away_team": {
+        "id": 100,
+        "name": "AS Roma",
+        "short_name": "Roma",
+        "tla": "ROM",
+        "crest": "https://crests.football-data.org/100.png"
+      },
+      "score": {
+        "winner": null,
+        "duration": "REGULAR",
+        "full_time": {
+          "home": null,
+          "away": null
+        },
+        "half_time": {
+          "home": null,
+          "away": null
+        },
+        "extra_time": {
+          "home": null,
+          "away": null
+        },
+        "penalties": {
+          "home": null,
+          "away": null
+        }
+      }
+    },
+    {
+      "id": 575383,
+      "utc_date": "2026-11-03T20:00:00Z",
+      "status": "TIMED",
+      "matchday": 4,
+      "stage": "LEAGUE_STAGE",
+      "group": null,
+      "last_updated": "2026-10-18T00:20:30Z",
+      "competition": {
+        "id": 2001,
+        "name": "UEFA Champions League",
+        "code": "CL",
+        "type": "CUP",
+        "emblem": "https://crests.football-data.org/CL.png"
+      },
+      "home_team": {
+        "id": 66,
+        "name": "Manchester United FC",
+        "short_name": "Man United",
+        "tla": "MUN",
+        "crest": "https://crests.football-data.org/66.png"
+      },
+      "away_team": {
+        "id": 100,
+        "name": "AS Roma",
+        "short_name": "Roma",
+        "tla": "ROM",
+        "crest": "https://crests.football-data.org/100.png"
       },
       "score": {
         "winner": null,
@@ -675,16 +675,16 @@
         "stage": "REGULAR_SEASON",
         "type": "TOTAL",
         "group": "Matchday",
-        "position": 3,
-        "played_games": 6,
+        "position": 2,
+        "played_games": 7,
         "form": null,
-        "won": 4,
+        "won": 5,
         "draw": 2,
         "lost": 0,
-        "points": 14,
-        "goals_for": 14,
+        "points": 17,
+        "goals_for": 16,
         "goals_against": 3,
-        "goal_difference": 11,
+        "goal_difference": 13,
         "team": {
           "id": 100,
           "name": "AS Roma",
@@ -696,6 +696,16 @@
     }
   },
   "squad": [
+    {
+      "id": 302405,
+      "name": "Alessandro Di Nunzio",
+      "position": null,
+      "date_of_birth": "2007-04-21",
+      "nationality": "Italy",
+      "shirt_number": null,
+      "market_value": null,
+      "last_updated": null
+    },
     {
       "id": 137693,
       "name": "Anass Salah-Eddine",
